@@ -26,6 +26,7 @@ OFFSET_SECS = 'offset_seconds'
 
 # DATABASE CLASS INSTANCES:
 DATABASES = {
+    'sqlite': ("dejavu.database_handler.sqlite_database", "SQLiteDatabase"),
     'mysql': ("dejavu.database_handler.mysql_database", "MySQLDatabase"),
     'postgres': ("dejavu.database_handler.postgres_database", "PostgreSQLDatabase")
 }

@@ -32,7 +32,13 @@ class CommonDatabase(BaseDatabase, metaclass=abc.ABCMeta):
         """
         with self.cursor() as cur:
             cur.execute(self.CREATE_SONGS_TABLE)
+            if hasattr(self, 'CREATE_TRIGGER_UPDATE_TIMESTAMP_ON_SONGS'):
+                cur.execute(self.CREATE_TRIGGER_UPDATE_TIMESTAMP_ON_SONGS)
             cur.execute(self.CREATE_FINGERPRINTS_TABLE)
+            if hasattr(self, 'CREATE_FINGERPRINTS_INDEX'):
+                cur.execute(self.CREATE_FINGERPRINTS_INDEX)
+            if hasattr(self, 'CREATE_TRIGGER_UPDATE_TIMESTAMP_ON_FINGERPRINTS'):
+                cur.execute(self.CREATE_TRIGGER_UPDATE_TIMESTAMP_ON_FINGERPRINTS)
             cur.execute(self.DELETE_UNFINGERPRINTED)
 
     def empty(self) -> None:
